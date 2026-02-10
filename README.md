@@ -80,7 +80,11 @@ condition: copilot_obs = obs[:-1]
 
 <img width="482" height="90" alt="image" src="https://github.com/user-attachments/assets/bbe5e945-5c8f-40b3-b880-20e3e2b0f622" />
 
-The copilots observation x_t[:cond_dim] = x0[:cond_dim] which contains no noise, but the action has noise during training.
+The copilot's observation x_t[:cond_dim] = x0[:cond_dim] which contains no noise, but the action has noise during training.
+
+The final loss is about 0.18. I first trained a policy with a loss of 0.22 loss which turned out not enough. I also wonder if a single policy is enough for this? Should I try several expert policies?
+
+
 
 ## Then, we have the autonomy framework:
 
@@ -165,6 +169,10 @@ Diffusion steps during atonomy framework: using a k-step of 50 during training, 
   </tr>
 </table>
 
+
+1. P(action| obs, Goal_ID)  This goal_id is ambiguous. But it can contain language information.
+2. Vlm usage frequency, now I'm using the frequency of 5, I feel like the closer to the goal, the more frequent it should be using the inference. And I'm using a vlm of 10B, a very small one.
+3. Question on the real robot: create a task, like grab the box, is it like I will create a high level python script to solve this then collect 10000 epsoid then collect the data than train the diffusion?
 
 
 
