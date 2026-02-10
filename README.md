@@ -145,11 +145,11 @@ Diffusion steps during atonomy framework: using a k-step of 50 during training, 
 
 <table>
   <tr>
+    <td><img src="gif/mid0.gif" width="180"><br>Right Hybrid</td>
     <td><img src="gif/mid1.gif" width="180"><br>Left Hybrid</td>
     <td><img src="gif/mid2.gif" width="180"><br>Left Hybrid</td>
     <td><img src="gif/mid3.gif" width="180"><br>Right Hybrid</td>
     <td><img src="gif/mid4.gif" width="180"><br>Right Hybrid</td>
-    <td><img src="gif/mid5.gif" width="180"><br>Right Hybrid</td>
   </tr>
 </table>
 
