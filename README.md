@@ -70,6 +70,20 @@ I have a simple automaton toy, which the expert will not have knowledge of where
 
 
 
+## First
+
+Trained a TD3 expert and collected 10000 episodes.
+
+## Train Duffusion Of Distribution: learn an action denoiser p(a∣copilot_obs)
+
+condition: copilot_obs = obs[:-1]
+
+<img width="482" height="90" alt="image" src="https://github.com/user-attachments/assets/bbe5e945-5c8f-40b3-b880-20e3e2b0f622" />
+
+The copilots observation x_t[:cond_dim] = x0[:cond_dim] which contains no noise, but the action has noise during training.
+
+## Then, we have the autonomy framework:
+
 <img width="2382" height="1590" alt="image" src="https://github.com/user-attachments/assets/b006bcc3-0a4c-491f-aa4a-552fdba1c6c3" />
 
 
@@ -86,3 +100,74 @@ I have a simple automaton toy, which the expert will not have knowledge of where
 
 
 {"type": "step", "episode": 0, "t": 0, "goal_x_norm": 0.19999999999999996, "pilot_action": [0.5, -0.5], "assist_action": [-0.9810952544212341, -0.6835295557975769], "exec_action": [-0.9810953140258789, -0.6835295557975769], "parsed_ok": true, "vlm_called": true, "k": 49, "reward": 1.4954983073837445, "terminated": false, "truncated": false, "goal_success": false}
+
+
+# Put these together
+
+
+<table>
+  <tr>
+    <td><img src="gif/vlm0.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/vlm1.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/vlm2.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/vlm3.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/vlm4.gif" width="180"><br>Right Hybrid</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td><img src="gif/bighelp0.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/bighelp1.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/bighelp2.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/bighelp3.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/bighelp4.gif" width="180"><br>Right Hybrid</td>
+  </tr>
+</table>
+
+## Prolblems
+
+Diffusion steps during atonomy framework: using a k-step of 50 during training, and during denoising: tried 50, 25, and 15. 
+
+50:
+
+<table>
+  <tr>
+    <td><img src="gif/bighelp0.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/bighelp1.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/bighelp2.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/bighelp3.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/bighelp4.gif" width="180"><br>Right Hybrid</td>
+  </tr>
+</table>
+
+25: 
+
+<table>
+  <tr>
+    <td><img src="gif/mid1.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/mid2.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/mid3.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/mid4.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/mid5.gif" width="180"><br>Right Hybrid</td>
+  </tr>
+</table>
+
+15:
+
+<table>
+  <tr>
+    <td><img src="gif/small1.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/small2.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/small3.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/small4.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/small5.gif" width="180"><br>Right Hybrid</td>
+  </tr>
+</table>
+
+
+
+
+
+
+
