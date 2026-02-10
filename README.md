@@ -51,3 +51,32 @@ I have a simple automaton toy, which the expert will not have knowledge of where
 </table>
 
 
+
+
+On Lunarlander with random landing location: what will the vlm perform?
+
+
+<table>
+  <tr>
+    <td><img src="gif/vlm0.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/vlm1.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/vlm2.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/vlm3.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/vlm4.gif" width="180"><br>Right Hybrid</td>
+  </tr>
+</table>
+
+{"type": "step", "episode": 0, "t": 0, "helipad_x_world": 12.0, "goal_x_norm": 0.19999999999999996, "obs_x": 0.0058383941650390625, "goal_dx": -0.1941616058349609, "action": [0.5, -0.5], "reward": -1.3209916473705108, "terminated": false, "truncated": false, "landed": false, "goal_success": false, "vlm_called": true, "parsed_ok": true, "raw_vlm": "<think>Got it, let's analyze the problem. The goal is to land on the helipad, which is on the right side since goal_x_norm is 0.200 (wait, wait, wait. Wait, the problem says goal_x_norm < 0 => pad is LEFT, >0 => RIGHT. Here goal_x_norm is 0.200, which is >0, so pad is RIGHT. The current position: helipad_x_world is 12.000. The lander's position—wait, the image shows the lander is above, maybe starting with some position. But the key is to move towards the right pad. Since lateral negative moves right (+x), positive moves left (-x). The pad is on the right (goal_x_norm >0), so we need to adjust the x position. If the lander is to the left of the pad, we need to move right (lateral negative). But first, check the current position. Wait, the image shows two flags (helipad) on the white area. The lander is above, so maybe we need to first stabilize the vertical position (main engine) and then adjust lateral. But since the first step, maybe start with main engine to slow down vertical speed, and lateral to move towards the pad. Wait, the current state: need to land on the right pad (goal_x_norm >0), so lateral should be negative (move right) if the lander is left of the pad. But let's think about the action. The main engine is for vertical control. If the lander is moving down, we need to apply main thrust to slow down. But first, let's check the coordinates. The helipad is at 12.000, goal_x_norm is 0.200, which is normalized. Wait, maybe the lander's current x position is not aligned. So, action: maybe main engine to start decelerating, and lateral to move right. But let's make a reasonable first action. Let's say main engine is 0.5 (medium thrust to slow down), lateral is -0.5 (move right). Wait, but need to check the rules. The action is [main, lateral], each in [-1,1]. So main can be 0 to 1 for thrust, lateral -1 to 1. For landing, usually start with main engine to control vertical speed. So maybe main = 0.5, lateral = -0.5 (move right). Then reason would be \"Apply main thrust to slow descent, lateral thrust right towards pad\".</think><answer>{\"action\":[0.5,-0.5],\"reason\":\"Apply main thrust to slow descent, lateral thrust right towards pad\"}"}
+
+
+<table>
+  <tr>
+    <td><img src="gif/bighelp0.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/bighelp1.gif" width="180"><br>Left Hybrid</td>
+    <td><img src="gif/bighelp2.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/bighelp3.gif" width="180"><br>Right Hybrid</td>
+    <td><img src="gif/bighelp4.gif" width="180"><br>Right Hybrid</td>
+  </tr>
+</table>
+
+{"type": "step", "episode": 0, "t": 0, "goal_x_norm": 0.19999999999999996, "pilot_action": [0.5, -0.5], "assist_action": [-0.9810952544212341, -0.6835295557975769], "exec_action": [-0.9810953140258789, -0.6835295557975769], "parsed_ok": true, "vlm_called": true, "k": 49, "reward": 1.4954983073837445, "terminated": false, "truncated": false, "goal_success": false}
