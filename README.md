@@ -172,6 +172,8 @@ Diffusion steps during atonomy framework: using a k-step of 50 during training, 
 
 1. P(action| obs, Goal_ID)  This goal_id is ambiguous. But it can contain language information.
 2. Vlm usage frequency, now I'm using the frequency of 5, I feel like the closer to the goal, the more frequent it should be using the inference. And I'm using a vlm of 10B, a very small one.
+A combination of both super NoisyActor and LaggyActor in the original paper
+
 3. Question on the real robot: create a task, like grab the box, is it like I will create a high level python script to solve this then collect 10000 epsoid then collect the data than train the diffusion?
 
 
