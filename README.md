@@ -179,5 +179,6 @@ A combination of both super NoisyActor and LaggyActor in the original paper
 
 
 
+<img width="1484" height="794" alt="image" src="https://github.com/user-attachments/assets/acdf00c1-ba9c-4ed4-bb24-689c925d369b" />
 
 
