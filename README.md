@@ -176,9 +176,19 @@ A combination of both super NoisyActor and LaggyActor in the original paper
 
 3. Question on the real robot: create a task, like grab the box, is it like I will create a high level python script to solve this then collect 10000 epsoid then collect the data than train the diffusion?
 
+Then 
 
-
+The following plots show the success rate vs the forward diffusion ratio：
+And also the min x to the goal and the final x to the goal.
 
 <img width="1484" height="794" alt="image" src="https://github.com/user-attachments/assets/acdf00c1-ba9c-4ed4-bb24-689c925d369b" />
 
+
+<img width="1326" height="774" alt="0db516aa2bf0cc20708c4ab9190c9044" src="https://github.com/user-attachments/assets/a7c6d079-40fb-40ff-ac66-04a06453a2ad" />
+
+Issues:
+
+The Vlm can be unreliable and the output of action is very 就是没啥变化 只会【00】【0.5 0.5】【0，1】这几个数值 这个应该也很好理解 因为他不懂 毕竟让我们人类去给动作也不太行吧
+
+首先我把vlm的模型变大，换一个更聪明的， 发现表现竟然更差了。
 
