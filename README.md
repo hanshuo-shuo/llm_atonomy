@@ -210,6 +210,7 @@ The VLM helps reduce the minimum distance to the goal,
 but fails at precise local manipulation due to its coarse actions.
 
 Question.
+
 The improvement from adding the VLM is marginal.
 I need a setting where the VLM is essential, not optional.
 
@@ -222,8 +223,13 @@ The rest of the diffusion-based shared autonomy pipeline remains unchanged.
 
 <img width="1336" height="782" alt="image" src="https://github.com/user-attachments/assets/5f2c34d6-8a77-448c-a415-eb9f1bb6f2de" />
 
+Good part: solves the vlm scale issue, that bigger model performs better, and the zero shot perfermence is about 38%.
 
 Unexpected result.
 With this heuristic adapter, a zero-shot VLM alone already achieves 38% success.
 Adding diffusion-based intervention sometimes hurts performance,
 likely because the heuristic adapter is already very accurate.
+
+The intent-to-action adapter is too accurate, diffusion becomes unnecessary. Maybe make the adapter weaker?
+
+Train a 
