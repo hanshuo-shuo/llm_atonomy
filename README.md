@@ -188,7 +188,42 @@ And also the min x to the goal and the final x to the goal.
 
 Issues:
 
-The Vlm can be unreliable and the output of action is very 就是没啥变化 只会【00】【0.5 0.5】【0，1】这几个数值 这个应该也很好理解 因为他不懂 毕竟让我们人类去给动作也不太行吧
+Problem with VLM actions.
 
-首先我把vlm的模型变大，换一个更聪明的， 发现表现竟然更差了。
+The VLM is unreliable when producing low-level actions.
+Its outputs are very coarse and repetitive, such as [0,0], [0.5, 0.5], or [0, 1].
+This is expected, because the VLM does not understand continuous control.
+Even for humans, directly specifying low-level actions is difficult.
 
+Scaling the VLM does not help.
+When I switch to a larger and “smarter” VLM, the performance becomes worse.
+This suggests a VLM paradox: better semantic reasoning does not translate to better low-level control.
+
+Baseline results.
+
+VLM-only pilot: 0% success
+
+Diffusion-only copilot (γ ≈ 1.0): ~20% success
+
+VLM + diffusion (γ ≈ 0.5): ~26% success
+The VLM helps reduce the minimum distance to the goal,
+but fails at precise local manipulation due to its coarse actions.
+
+Question.
+The improvement from adding the VLM is marginal.
+I need a setting where the VLM is essential, not optional.
+
+
+New autonomy interface.
+Instead of outputting actions, the VLM now outputs a relative target position at each step: (dx, dy).
+
+This (dx, dy) is converted into a pseudo-action using a heuristic controller from the environment code.
+The rest of the diffusion-based shared autonomy pipeline remains unchanged.
+
+<img width="1336" height="782" alt="image" src="https://github.com/user-attachments/assets/5f2c34d6-8a77-448c-a415-eb9f1bb6f2de" />
+
+
+Unexpected result.
+With this heuristic adapter, a zero-shot VLM alone already achieves 38% success.
+Adding diffusion-based intervention sometimes hurts performance,
+likely because the heuristic adapter is already very accurate.
