@@ -232,4 +232,70 @@ likely because the heuristic adapter is already very accurate.
 
 The intent-to-action adapter is too accurate, diffusion becomes unnecessary. Maybe make the adapter weaker?
 
-Train a 
+## lower the frequency and train
+
+VLM Every 50:
+
+<img width="1208" height="818" alt="image" src="https://github.com/user-attachments/assets/b9eb011e-9546-4631-a47a-ca934d218a71" />
+
+VLM Every 75:
+
+<img width="1188" height="778" alt="image" src="https://github.com/user-attachments/assets/c03b0a33-0381-44ae-a6b2-c502e85eb0ac" />
+
+VLM Every 100:
+
+<img width="1182" height="800" alt="image" src="https://github.com/user-attachments/assets/af70a351-2593-4cc4-a700-328f6444e0b1" />
+
+We can see a clear problem here that the vlm itself is strong enough and lower the frequency is not helping any. And we can see the VLM Every 100 still have very high success rate. The adpator is too strong, as long as the 大体方向是对的 他就能一直稳定的到终点。 所以我弄了一个弱点的adaptor 只能看方向 加速度啥的也弱化了 promt也弱化了 只让vlm看图。
+
+VLM Every 25:
+
+<img width="1210" height="842" alt="image" src="https://github.com/user-attachments/assets/d83f847e-ff3e-48ae-af82-a787143a98fe" />
+
+VLM Every 50:
+
+<img width="1192" height="822" alt="image" src="https://github.com/user-attachments/assets/f7834cca-45fb-46a3-8a74-d8d60c02cbd9" />
+
+Now we have a setting similar to what the paper has now. Similar plot trend and best ratio. Now the success rate is still low, leaving room for inprovement.
+
+## Mofication
+
+1. Train a new conditional diffusion. We previously have p(action|observation)
+
+- Now we train p(action|observation, Indicator) 
+
+- VLM still outputs waypoint intent [dx, dy], but it can be called infrequently. Based on the dx we get the Indicator.
+
+- Convert waypoint dx to a 3-class condition for diffusion:
+    LEFT   -> [1, 0, 0]
+    CENTER -> [0, 1, 0] (abs(dx) <= goal tolerance)
+    RIGHT  -> [0, 0, 1]
+- The diffusion loss drops from 0.16 to 0.11
+
+However, it is not helping much in terms of the success rate.
+
+
+<img width="1204" height="812" alt="image" src="https://github.com/user-attachments/assets/ce39f2fb-463f-4c96-970e-ea657c10b0e3" />
+
+Adding an extra indicator is not helping too much.
+
+
+2. Using an Adaptive Diffusion Refinement K, similar to the paper that we observe the best ratio is about 0.4. Then the intuition is that if the a_vlm is alreadly good then the ratio is smaller otherwise, the ratio is bigger.
+
+For each dx_waypoint, then using the weak adaptor we get a_vlm, use a small k=5 to denoise, and if the output denoised action is close to the a_vlm, we use a smaller ratio, otherwise we use a bigger ratio. 
+
+Then under the same setting, 
+
+- The best result we previous have is that: vlm every 25 ratio of 0.4
+
+[summary] episodes=50 mean_return=61.38 success_rate=0.320 
+final |dx|: mean=0.255 median=0.206 p25=0.049 p75=0.389 
+min   |dx|: mean=0.112 median=0.013 p25=0.002 p75=0.211 
+
+- Adaptive Diffusion Refinement K:
+
+[summary] episodes=50 mean_return=77.23 success_rate=0.380
+  final |dx|: mean=0.221 median=0.113 p25=0.058 p75=0.371
+  min   |dx|: mean=0.094 median=0.012 p25=0.001 p75=0.207
+
+  
