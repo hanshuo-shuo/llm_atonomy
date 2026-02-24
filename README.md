@@ -246,7 +246,11 @@ VLM Every 100:
 
 <img width="1182" height="800" alt="image" src="https://github.com/user-attachments/assets/af70a351-2593-4cc4-a700-328f6444e0b1" />
 
-We can see a clear problem here that the vlm itself is strong enough and lower the frequency is not helping any. And we can see the VLM Every 100 still have very high success rate. The adpator is too strong, as long as the 大体方向是对的 他就能一直稳定的到终点。 所以我弄了一个弱点的adaptor 只能看方向 加速度啥的也弱化了 promt也弱化了 只让vlm看图。
+We can clearly observe a problem: the VLM itself is already strong enough, and lowering the frequency does not significantly degrade its performance. Even when the VLM is called every 100 steps, the success rate remains very high. 
+
+The adaptor is too strong — as long as the general direction is correct, it can consistently and stably reach the goal.
+
+To address this, I weakened the adaptor. The new adaptor only considers direction, and the acceleration control is also weakened. I simplified the prompt as well, forcing the VLM to rely only on visual input.
 
 VLM Every 25:
 
@@ -258,21 +262,31 @@ VLM Every 50:
 
 Now we have a setting similar to what the paper has now. Similar plot trend and best ratio. Now the success rate is still low, leaving room for inprovement.
 
-## Mofication
+## Modification 1: Conditional Diffusion
 
-1. Train a new conditional diffusion. We previously have p(action|observation)
+Previously, we trained an unconditional diffusion model:
 
-- Now we train p(action|observation, Indicator) 
+[
+p(a \mid o)
+]
 
-- VLM still outputs waypoint intent [dx, dy], but it can be called infrequently. Based on the dx we get the Indicator.
+Now we train a conditional diffusion model:
 
-- Convert waypoint dx to a 3-class condition for diffusion:
-    LEFT   -> [1, 0, 0]
-    CENTER -> [0, 1, 0] (abs(dx) <= goal tolerance)
-    RIGHT  -> [0, 0, 1]
-- The diffusion loss drops from 0.16 to 0.11
+[
+p(a \mid o, \text{Indicator})
+]
 
-However, it is not helping much in terms of the success rate.
+The VLM still outputs a waypoint intent ([dx, dy]), but it can be called infrequently. Based on the horizontal component (dx), we construct an Indicator.
+
+We convert the waypoint (dx) into a 3-class condition for diffusion:
+
+* LEFT   → [1, 0, 0]
+* CENTER → [0, 1, 0] (when (|dx|) is within the goal tolerance)
+* RIGHT  → [0, 0, 1]
+
+With this modification, the diffusion loss decreases from 0.16 to 0.11.
+
+However, this does not significantly improve the success rate. Adding the extra indicator only provides marginal gains.
 
 
 <img width="1204" height="812" alt="image" src="https://github.com/user-attachments/assets/ce39f2fb-463f-4c96-970e-ea657c10b0e3" />
