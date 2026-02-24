@@ -292,11 +292,21 @@ However, this does not significantly improve the success rate. Adding the extra 
 Adding an extra indicator is not helping too much.
 
 
-2. Using an Adaptive Diffusion Refinement K, similar to the paper that we observe the best ratio is about 0.4. Then the intuition is that if the a_vlm is alreadly good then the ratio is smaller otherwise, the ratio is bigger.
+## Modification 2: Adaptive Diffusion Refinement (Adaptive K)
 
-For each dx_waypoint, then using the weak adaptor we get a_vlm, use a small k=5 to denoise, and if the output denoised action is close to the a_vlm, we use a smaller ratio, otherwise we use a bigger ratio. 
+From previous experiments, we observed that the best fixed diffusion ratio is around 0.4.
 
-Then under the same setting, 
+The intuition is that if the VLM action $a_{\text{vlm}}$ is already good, we should use a smaller diffusion ratio; otherwise, we should use a larger ratio.
+
+For each waypoint (dx), we:
+
+1. Use the weak adaptor to obtain $a_{\text{vlm}}$.
+2. Apply a small number of denoising steps (e.g., (k = 5)).
+3. Measure the distance between the denoised action and (a_{\text{vlm}}).
+4. If they are close, we use a smaller diffusion ratio.
+5. Otherwise, we increase the diffusion ratio.
+
+Under the same experimental setting:
 
 - The best result we previous have is that: vlm every 25 ratio of 0.4
 
