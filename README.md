@@ -266,15 +266,13 @@ Now we have a setting similar to what the paper has now. Similar plot trend and 
 
 Previously, we trained an unconditional diffusion model:
 
-[
-p(a \mid o)
-]
+
+$p(a \mid o)$
 
 Now we train a conditional diffusion model:
 
-[
-p(a \mid o, \text{Indicator})
-]
+
+$p(a \mid o, \text{Indicator})$
 
 The VLM still outputs a waypoint intent ([dx, dy]), but it can be called infrequently. Based on the horizontal component (dx), we construct an Indicator.
 
