@@ -320,4 +320,20 @@ min   |dx|: mean=0.112 median=0.013 p25=0.002 p75=0.211
   final |dx|: mean=0.221 median=0.113 p25=0.058 p75=0.371
   min   |dx|: mean=0.094 median=0.012 p25=0.001 p75=0.207
 
+
+## Using LLM's Confidence as a signal 
+
+Instead of just taking the VLM's text output (the JSON command), we look at the internal probability scores the model assigns to its own words.
+Token Probabilities: When the VLM generates a response (like {"waypoint": [0.5, 0.2]}), it generates it one "token" (word part) at a time.
+Log-Probabilities: For every token it generates, the model calculates a "Log-Probability" (a mathematical score indicating how likely that token is).
+
+
+$$k = k_{min} + \text{Score} \times (k_{max} - k_{min})$$, when the VLM sounds confused, the Diffusion Copilot takes more control.
+
+And after some careful tuning, we got:
+
+[summary] episodes=50 mean_return=60.41 success_rate=0.420
+  final |dx|: mean=0.277 median=0.130 p25=0.078 p75=0.396
+  min   |dx|: mean=0.055 median=0.002 p25=0.001 p75=0.019
+
   
