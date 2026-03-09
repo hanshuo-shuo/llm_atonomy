@@ -336,4 +336,11 @@ And after some careful tuning, we got:
   final |dx|: mean=0.277 median=0.130 p25=0.078 p75=0.396
   min   |dx|: mean=0.055 median=0.002 p25=0.001 p75=0.019
 
-  
+
+To show that vlm's confidence level is doing something, I also did an albtion study: use random K instead of the K provided by the vlm's confidence.
+
+[summary] episodes=50 mean_return=66.86 success_rate=0.240
+  final |dx|: mean=0.258 median=0.196 p25=0.097 p75=0.363
+  min   |dx|: mean=0.119 median=0.028 p25=0.002 p75=0.213
+
+<img width="1122" height="1044" alt="image" src="https://github.com/user-attachments/assets/71d1a849-53fa-4376-84f3-4c15e39a55ba" />
