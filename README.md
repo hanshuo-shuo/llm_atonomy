@@ -371,6 +371,10 @@ So I continue on more trials of 200:
 <img width="2430" height="810" alt="image" src="https://github.com/user-attachments/assets/213b0a52-e5bf-4753-862e-b41d720d56b5" />
 
 
+Adaptive helps reach the goal region, but hurts stabilization after reaching it. 
+
+Maybe: adaptive copilot improves exploration of goal region but destabilizes exploitation near the goal
+
 Plan: Predict when VLM advice is needed, not just when it is uncertain.
 
 
