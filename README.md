@@ -371,6 +371,8 @@ So I continue on more trials of 200:
 <img width="2430" height="810" alt="image" src="https://github.com/user-attachments/assets/213b0a52-e5bf-4753-862e-b41d720d56b5" />
 
 
+Plan: Predict when VLM advice is needed, not just when it is uncertain.
+
 
 ## Obstacle
 
@@ -378,3 +380,4 @@ So I continue on more trials of 200:
 
 
 <img width="1600" height="1100" alt="image" src="https://github.com/user-attachments/assets/21c9ca4f-6f9e-4ade-9b91-ecd620c2f211" />
+
