@@ -325,8 +325,11 @@ min   |dx|: mean=0.112 median=0.013 p25=0.002 p75=0.211
 
 Instead of just taking the VLM's text output (the JSON command), we look at the internal probability scores the model assigns to its own words.
 Token Probabilities: When the VLM generates a response (like {"waypoint": [0.5, 0.2]}), it generates it one "token" (word part) at a time.
+
+
 Log-Probabilities: For every token it generates, the model calculates a "Log-Probability" (a mathematical score indicating how likely that token is).
 
+uncertainty = 1 - exp(mean_logprob) to get a score
 
 $$k = k_{min} + \text{Score} \times (k_{max} - k_{min})$$, when the VLM sounds confused, the Diffusion Copilot takes more control.
 
@@ -343,4 +346,18 @@ To show that vlm's confidence level is doing something, I also did an albtion st
   final |dx|: mean=0.258 median=0.196 p25=0.097 p75=0.363
   min   |dx|: mean=0.119 median=0.028 p25=0.002 p75=0.213
 
+
+
 <img width="1122" height="1044" alt="image" src="https://github.com/user-attachments/assets/71d1a849-53fa-4376-84f3-4c15e39a55ba" />
+
+
+Very sensitive to the Score scale, and the optimal score is different under different vlm call frequency.
+
+
+
+## Obstacle
+
+<img width="1502" height="1046" alt="image" src="https://github.com/user-attachments/assets/da6e406c-25f9-41c6-9b4b-4d348a9df15f" />
+
+
+<img width="1600" height="1100" alt="image" src="https://github.com/user-attachments/assets/21c9ca4f-6f9e-4ade-9b91-ecd620c2f211" />
