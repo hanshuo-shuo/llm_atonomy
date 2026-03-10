@@ -355,6 +355,23 @@ Very sensitive to the Score scale, and the optimal score is different under diff
 
 
 
+So I continue on more trials of 200:
+
+<img width="2880" height="774" alt="image" src="https://github.com/user-attachments/assets/16fc73f9-fe89-4bca-83da-6bf919bfc506" />
+
+<img width="1548" height="864" alt="image" src="https://github.com/user-attachments/assets/35134698-755b-43ef-9aae-86b48e795462" />
+
+<img width="1548" height="864" alt="image" src="https://github.com/user-attachments/assets/95b9bea4-85a0-4ddc-81e6-2c5a55e9b9ec" />
+
+
+<img width="2304" height="756" alt="image" src="https://github.com/user-attachments/assets/0ec92736-3f5d-4da1-bd07-e4160e6ee56d" />
+
+<img width="1530" height="900" alt="image" src="https://github.com/user-attachments/assets/8be86ff3-3394-48ac-97af-b38e15dd695e" />
+
+<img width="2430" height="810" alt="image" src="https://github.com/user-attachments/assets/213b0a52-e5bf-4753-862e-b41d720d56b5" />
+
+
+
 ## Obstacle
 
 <img width="1502" height="1046" alt="image" src="https://github.com/user-attachments/assets/da6e406c-25f9-41c6-9b4b-4d348a9df15f" />
