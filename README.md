@@ -378,10 +378,17 @@ Maybe: adaptive copilot improves exploration of goal region but destabilizes exp
 Plan: Predict when VLM advice is needed, not just when it is uncertain.
 
 
+## Orcacle
+
+We also introduce an oracle agent, who knows exactly where the goal is and is navigating towards that goal, but it is still using the same adaptor. Recall that my framework is ask the vlm
+to output the dx and dy. Now I just use a perfect answer as an oracle, and I also changed how the env works.
+
+
+
+
 ## Obstacle
 
 <img width="1502" height="1046" alt="image" src="https://github.com/user-attachments/assets/da6e406c-25f9-41c6-9b4b-4d348a9df15f" />
-
 
 <img width="1600" height="1100" alt="image" src="https://github.com/user-attachments/assets/21c9ca4f-6f9e-4ade-9b91-ecd620c2f211" />
 
