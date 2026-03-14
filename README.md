@@ -383,7 +383,7 @@ Plan: Predict when VLM advice is needed, not just when it is uncertain.
 We also introduce an oracle agent, who knows exactly where the goal is and is navigating towards that goal, but it is still using the same adaptor. Recall that my framework is ask the vlm
 to output the dx and dy. Now I just use a perfect answer as an oracle, and I also changed how the env works.
 
-
+The oracle has the highest success rate, and if we change how the success works, we can see that the adaptive is very close to the oracle. 就感觉这里很奇怪啊 然后我就把最后阶段的diffusion 的幅度加大 可惜效果提神不是很明显 就是orcale提升很小 然后adaptive反而有下降。然后在这个系统 感觉是不是有什么问题啊 下一步还能干啥啊
 
 
 ## Obstacle
